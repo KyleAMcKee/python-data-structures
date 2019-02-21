@@ -63,7 +63,7 @@ class SingleLinkedList:
             self.pop()
             return index
         
-        self.root = tmp
+        tmp = self.begin
         prev = None
         while(tmp.next):
             prev = tmp
