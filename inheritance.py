@@ -13,6 +13,18 @@ class Employee:
     
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amt)
+    
+    def __repr__(self):
+        return "Employee('{}', '{}', {})".format(self.first, self.last, self.pay)
+
+    def __str__(self):
+        return '{} - {}'.format(self.fullname(), self.email)
+    
+    def __add__(self, other):
+        return self.pay + other.pay
+    
+    def __len__(self):
+        return self.fullname().__len__()
 
 class Developer(Employee):
     raise_amt = 1.12
@@ -43,7 +55,7 @@ class Manager(Employee):
         for emp in self.employees:
             print(emp.fullname())
 
-dev1 = Developer('Homer', 'Simpson', 50000, 'TypeScript')
+dev1 = Employee('Homer', 'Simpson', 50000)
 dev2 = Developer('Bart', 'Simpson', 65000, 'KabaScript')
 man1 = Manager('Marge', 'Simpson', 75000)
 
@@ -55,7 +67,9 @@ man1.print_employees()
 
 print(isinstance(man1, Developer))
 print(issubclass(Manager, Employee))
-
+print(dev1)
+print(dev1 + dev2)
+print(len(dev1))
 
 # print(dev1.pay)
 # dev1.apply_raise()
